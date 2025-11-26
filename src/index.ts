@@ -80,7 +80,10 @@ io.on("connection", (socket: PlayerSocket) => {
     console.log(`🎮 Match creato: ${roomId}`);
 
     // avviso al client
-    io.to(roomId).emit("match_start", roomState);
+    io.to(roomId).emit("match_start", {
+      roomId,
+      players: [player1.id, player2.id],
+    });
   }
 
   socket.on("disconnect", () => {
